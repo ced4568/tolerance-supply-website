@@ -1,0 +1,10 @@
+{
+  "scanned": "2026-07-22",
+  "fontStack": "Space Grotesk + Inter + JetBrains Mono (index.html:5, Google Fonts link)",
+  "palette": "Hex tokens in :root, Midnight Navy dark theme, Electric Blue accent, Cyan highlight (index.html:9-63)",
+  "motion": "none installed; inline CSS keyframes only",
+  "spacing": "custom scale, --space-3xs through --space-3xl",
+  "framework": "none; single static index.html, no package.json",
+  "designMd": false,
+  "notes": "First Hallmark run on this project. mockup.html + tokens.css added as a separate alternate build; index.html untouched."
+}

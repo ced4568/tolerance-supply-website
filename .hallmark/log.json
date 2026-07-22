@@ -1,0 +1,9 @@
+[
+  {
+    "date": "2026-07-22",
+    "macrostructure": "Bento Grid",
+    "theme": "brand (Navy/Electric Blue/Cyan, carried over from index.html per user request)",
+    "enrichment": "Tier-A hand-built SVG line icons",
+    "brief": "Vector Forge Systems · digital fabrication equipment retailer · alternate homepage mockup (mockup.html), original index.html left untouched. Revised after feedback: recolored from an exploratory amber palette to the site's actual brand colors, Robotics & Automation / CNC & Fabrication restored to full-size tiles, display font swapped from Big Shoulders Display to JetBrains Mono for a more measured engineering-datasheet feel, and honest spec-sheet rows (\"available on request\") added to every in-stock equipment tile since no real product specs exist yet. Corrected a misreading where the full 'Vector Forge Systems' name and the nav logo mark were mistakenly dropped — both restored; logo mark reuses the exact SVG node-and-path icon from index.html, recolored via tokens. Design pass addressing visual-craft feedback: restored the original hero's grid-pattern + watermark atmosphere (token-based), added icon-chip backing + a materials swatch-grid for color variety, varied per-tile composition instead of one repeated template, and gave the flagship (3D Printers) and Contact tiles distinct 'loud' treatments as the page's two visual anchors. Market-balance pass: added an 11th tile ('New to fabrication?') as a low-commitment on-ramp for hobbyists, introduced a softer-radius '.cell-soft' treatment for the three human/guidance tiles (kept the equipment tiles precise/mono), and rebalanced the use-case tile so Makerspace leads instead of sharing equal billing with Education/Prototyping/Production — user wants roughly equal sales across the serious-buyer and hobbyist/maker segments."
+  }
+]
