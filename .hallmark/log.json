@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-07-23",
+    "macrostructure": "spec-dictated (client Homepage Build Spec v1) — not catalog-picked",
+    "theme": "brand (BuildSource — White / Deep Navy #0F172A / Engineering Blue #2563EB / Safety Orange #F97316, per Brand Standards v1; full rebrand from Vector Forge Systems' all-navy dark theme to a light page with a Deep Navy contrast band)",
+    "enrichment": "none — typography + placeholder photography (real workshop/lab photos not yet supplied; honest-copy rule, labelled pending)",
+    "brief": "BuildSource (rebrand of Vector Forge Systems) · Shopify-bound B2B/B2C equipment retailer homepage · built to client's own Homepage Build Spec v1 verbatim (Hero split, Shop by Category, Why BuildSource, Shop by Brand placeholder x6, Learning Center placeholder x4, Business Buyers CTA banner, Ft3-style footer + newsletter) · nav switched to N1b SaaS three-section (was N12 banner + N9) · type switched to Space Grotesk + Inter (was JetBrains Mono + IBM Plex Sans) · mobile-first CSS per spec · reviewed by Brand Guardian (fixed: nav logo was filled in the CTA-only Safety Orange, footer h3s were quietly overriding to the body font) and Whimsy Injector (5 CSS-only polish touches: category arrow hover motion, brand-slot corner registration ticks, orange top-rule on the CTA banner, wordmark hover state, newsletter input focus ring). Saved as buildsource-homepage.html; index.html / tokens.css / clipped-corner-homepage.html left untouched — brand/entity pivot to BuildSource not yet promoted to the live page. Repo renamed vector-forge-website -> buildsource-website same session."
+  },
+  {
     "date": "2026-07-22",
     "macrostructure": "Bento Grid",
     "theme": "brand (Navy/Electric Blue/Cyan, carried over from index.html per user request)",
