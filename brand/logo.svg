@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40" width="300" height="40">
+  <rect width="32" height="32" y="4" rx="7" fill="#2563EB"/>
+  <path d="M10 25 L16 14 L22 25" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12.5 20.5 L19.5 20.5" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="44" y="27" font-family="'Space Grotesk', ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="21" letter-spacing="-0.01em" fill="#0F172A">Tolerance Supply</text>
+</svg>
