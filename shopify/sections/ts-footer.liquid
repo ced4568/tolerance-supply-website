@@ -1,0 +1,87 @@
+{{ 'ts-styles.css' | asset_url | stylesheet_tag }}
+
+<div class="ts-scope">
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img class="mark-logo" src="{{ 'ts-logo-inverse.svg' | asset_url }}" alt="{{ shop.name }}" height="22">
+          <h2>Straight answers on equipment, before you buy.</h2>
+          <p>New products, buying guides, and shop tips — a few times a month, no spam.</p>
+        </div>
+        <div class="footer-newsletter">
+          {%- form 'customer', id: 'TsNewsletterForm', class: 'ts-newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            {%- if form.posted_successfully? -%}
+              <p>Thanks for subscribing!</p>
+            {%- else -%}
+              <input
+                type="email"
+                name="contact[email]"
+                id="TsNewsletterEmail-{{ section.id }}"
+                aria-label="Email address"
+                placeholder="you@company.com"
+                value="{{ form.email }}"
+                required
+              >
+              <button type="submit" class="btn btn-outline-inverse">Sign up</button>
+              {%- if form.errors -%}
+                <p class="footer-newsletter-privacy">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endform -%}
+          <p class="footer-newsletter-privacy">Unsubscribe anytime.</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="{{ routes.all_products_collection_url }}">All Products</a></li>
+            <li><a href="/collections/3d-printing">3D Printing</a></li>
+            <li><a href="/collections/cnc-machines">CNC Machines</a></li>
+            <li><a href="/collections/laser-systems">Laser Systems</a></li>
+            <li><a href="/collections/test-measurement">Test &amp; Measurement</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="/pages/our-story">Our Story</a></li>
+            <li><a href="{{ routes.root_url }}#learning">Learning Center</a></li>
+            <li><a href="/pages/business-inquiries">Business Inquiries</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="/pages/shipping">Shipping &amp; Freight</a></li>
+            <li><a href="/pages/returns">Returns &amp; Warranty</a></li>
+            <li><a href="/pages/faq">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="{{ routes.root_url }}policies/privacy-policy">Privacy Policy</a></li>
+            <li><a href="{{ routes.root_url }}policies/terms-of-service">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}, a CDAA Technologies LLC company.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "TS Footer",
+  "settings": []
+}
+{% endschema %}

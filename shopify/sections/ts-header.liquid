@@ -1,0 +1,28 @@
+{{ 'ts-styles.css' | asset_url | stylesheet_tag }}
+{{ 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap' | stylesheet_tag }}
+
+<div class="ts-scope">
+  <header class="nav">
+    <div class="nav-bar container">
+      <a href="{{ routes.root_url }}" class="nav-brand" aria-label="{{ shop.name }} home">
+        <img class="mark-logo" src="{{ 'ts-logo.svg' | asset_url }}" alt="{{ shop.name }}" height="26">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+        <a href="{{ routes.root_url }}#categories">Categories</a>
+        <a href="{{ routes.root_url }}#learning">Learning Center</a>
+        <a href="/pages/business-inquiries">Business</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/pages/contact" class="btn btn-outline">Talk to an Expert</a>
+      </div>
+    </div>
+  </header>
+</div>
+
+{% schema %}
+{
+  "name": "TS Header",
+  "settings": []
+}
+{% endschema %}

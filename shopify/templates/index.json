@@ -1,0 +1,112 @@
+{
+  "sections": {
+    "hero": {
+      "type": "ts-hero",
+      "settings": {
+        "image": "shopify://shop_images/photo-1717386255767-52643970d483.jpg",
+        "heading": "Professional Equipment for Builders, Educators & Machine Shops",
+        "subheading": "Tolerance Supply supplies desktop manufacturing equipment — 3D printers, CNC machines, laser systems, and precision test equipment — to makers, educators, engineers, and small machine shops who need professional-grade tools without industrial pricing or guesswork."
+      }
+    },
+    "categories": {
+      "type": "ts-category-grid",
+      "blocks": {
+        "c1": { "type": "category", "settings": { "collection": "3d-printing", "label": "3D Printing" } },
+        "c2": { "type": "category", "settings": { "collection": "cnc-machines", "label": "CNC Machines" } },
+        "c3": { "type": "category", "settings": { "collection": "laser-systems", "label": "Laser Systems" } },
+        "c4": { "type": "category", "settings": { "collection": "test-measurement", "label": "Test & Measurement" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"],
+      "settings": {
+        "heading": "Shop by Category"
+      }
+    },
+    "why_tolerance_supply": {
+      "type": "ts-feature-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z\"/><path d=\"M12 12l8-4.5M12 12v9M12 12L4 7.5\"/></svg>",
+            "title": "Real Recommendations, Not Guesswork",
+            "text": "We help you match the right machine to your actual project — not just the highest-margin SKU."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"14\" rx=\"1\"/><path d=\"M3 9h18M8 4v14\"/></svg>",
+            "title": "Built for Shops and Makers Alike",
+            "text": "Whether you're prototyping in a garage or running a two-person machine shop, we carry equipment that scales with you."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19V7a2 2 0 012-2h6l6 6v8a2 2 0 01-2 2H6a2 2 0 01-2-2z\"/><path d=\"M12 5v6h6\"/></svg>",
+            "title": "Classroom & Lab Ready",
+            "text": "Durable, safe, well-documented equipment that fits STEM labs and makerspaces — with straight answers when you're buying for students, not just yourself."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4l3 2\"/></svg>",
+            "title": "Straight Answers on Specs and Safety",
+            "text": "Laser class ratings, spindle torque, measurement accuracy — we tell you what actually matters before you buy."
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {
+        "heading": "Why Tolerance Supply"
+      }
+    },
+    "shop_by_brand": {
+      "type": "ts-brand-wall",
+      "blocks": {
+        "b1": { "type": "slot", "settings": { "label": "Brand" } },
+        "b2": { "type": "slot", "settings": { "label": "Brand" } },
+        "b3": { "type": "slot", "settings": { "label": "Brand" } },
+        "b4": { "type": "slot", "settings": { "label": "Brand" } },
+        "b5": { "type": "slot", "settings": { "label": "Brand" } },
+        "b6": { "type": "slot", "settings": { "label": "Brand" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"],
+      "settings": {
+        "heading": "Shop by Brand",
+        "note": "Vendor logos — added once supplier agreements are confirmed. Slots reserved below."
+      }
+    },
+    "learning_center": {
+      "type": "ts-learning-center",
+      "blocks": {
+        "l1": { "type": "article", "settings": { "image": "shopify://shop_images/14964338568_4ce16f9f39_b_d4f8cdce-4147-4469-b01e-f8a6f026adb7.jpg", "status": "Coming soon", "title": "Choosing Your First CNC: Desktop vs. Benchtop" } },
+        "l2": { "type": "article", "settings": { "image": "shopify://shop_images/photo-1711418235334-8895331a6cf9.jpg", "status": "Coming soon", "title": "Diode vs. CO2 Lasers: What's Right for Your Shop" } },
+        "l3": { "type": "article", "settings": { "image": "shopify://shop_images/photo-1563520240344-52b067aa5f84.jpg", "status": "Coming soon", "title": "3D Printer Buying Guide for Small Manufacturing" } },
+        "l4": { "type": "article", "settings": { "image": "shopify://shop_images/pexels-photo-18471567.jpg", "status": "Coming soon", "title": "Understanding Multimeter and Oscilloscope Specs" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4"],
+      "settings": {
+        "heading": "From the Learning Center"
+      }
+    },
+    "cta_banner": {
+      "type": "ts-cta-banner",
+      "settings": {
+        "heading": "Running a shop, lab, or classroom? Buying for the team?",
+        "text": "Email us for volume pricing and equipment recommendations tailored to your workflow.",
+        "button_label": "Contact Sales",
+        "button_link": "/pages/business-inquiries"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "why_tolerance_supply",
+    "shop_by_brand",
+    "learning_center",
+    "cta_banner"
+  ]
+}

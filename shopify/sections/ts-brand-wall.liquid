@@ -1,0 +1,53 @@
+{{ 'ts-styles.css' | asset_url | stylesheet_tag }}
+
+<div class="ts-scope">
+  <section class="section section-tight container">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p class="brand-note">{{ section.settings.note }}</p>
+    </div>
+    <div class="brand-grid">
+      {%- for block in section.blocks -%}
+        <div class="brand-slot" tabindex="0" {{ block.shopify_attributes }}>{{ block.settings.label }}</div>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "TS Brand Wall",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Brand"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note",
+      "default": "Vendor logos — added once supplier agreements are confirmed. Slots reserved below."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slot",
+      "name": "Brand slot",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Placeholder label", "default": "Brand" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS Brand Wall",
+      "blocks": [
+        { "type": "slot" }, { "type": "slot" }, { "type": "slot" },
+        { "type": "slot" }, { "type": "slot" }, { "type": "slot" }
+      ]
+    }
+  ]
+}
+{% endschema %}

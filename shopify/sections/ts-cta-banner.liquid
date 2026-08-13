@@ -1,0 +1,47 @@
+{{ 'ts-styles.css' | asset_url | stylesheet_tag }}
+
+<div class="ts-scope">
+  <section class="cta-banner">
+    <div class="container cta-banner-inner">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      <a href="{{ section.settings.button_link }}" class="btn btn-cta">{{ section.settings.button_label }}</a>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "TS CTA Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Running a shop, lab, or classroom? Buying for the team?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Email us for volume pricing and equipment recommendations tailored to your workflow."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Contact Sales"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS CTA Banner"
+    }
+  ]
+}
+{% endschema %}

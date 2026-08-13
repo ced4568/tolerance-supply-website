@@ -1,0 +1,56 @@
+{{ 'ts-styles.css' | asset_url | stylesheet_tag }}
+
+<div class="ts-scope">
+  <section class="hero container">
+    <div class="hero-grid">
+      <div>
+        <h1 class="reveal" style="--i:0">{{ section.settings.heading }}</h1>
+        <p class="hero-sub reveal" style="--i:1">{{ section.settings.subheading }}</p>
+        <div class="hero-cta reveal" style="--i:2">
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-cta btn-full">Shop Products</a>
+          <a href="/pages/contact" class="btn btn-outline btn-full">Talk to an Expert</a>
+        </div>
+      </div>
+      {%- if section.settings.image != blank -%}
+        <div class="photo-slot reveal" style="--i:1">
+          {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'eager', alt: section.settings.heading, style: 'width:100%; height:100%; object-fit:cover;' }}
+        </div>
+      {%- else -%}
+        <div class="photo-slot reveal" style="--i:1">
+          <span class="photo-slot-label">Photo: machine in use, real workshop — pending asset</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "TS Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero photo",
+      "info": "Real workshop/machine photo. Leave blank to show the pending-asset placeholder."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Professional Equipment for Builders, Educators & Machine Shops"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Tolerance Supply supplies desktop manufacturing equipment — 3D printers, CNC machines, laser systems, and precision test equipment — to makers, educators, engineers, and small machine shops who need professional-grade tools without industrial pricing or guesswork."
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS Hero"
+    }
+  ]
+}
+{% endschema %}

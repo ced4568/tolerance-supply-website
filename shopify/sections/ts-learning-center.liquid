@@ -1,0 +1,62 @@
+{{ 'ts-styles.css' | asset_url | stylesheet_tag }}
+
+<div class="ts-scope">
+  <section class="section section-roomy container" id="learning">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="learning-row">
+      {%- for block in section.blocks -%}
+        <article class="learning-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="photo-slot">
+              {{ block.settings.image | image_url: width: 600 | image_tag: alt: block.settings.title, style: 'width:100%; height:100%; object-fit:cover;' }}
+            </div>
+          {%- else -%}
+            <div class="photo-slot"><span class="photo-slot-label">Photo pending</span></div>
+          {%- endif -%}
+          <div class="learning-card-body">
+            <span class="learning-status">{{ block.settings.status }}</span>
+            <h3>{{ block.settings.title }}</h3>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "TS Learning Center",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From the Learning Center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "status", "label": "Status label", "default": "Coming soon" },
+        { "type": "text", "id": "title", "label": "Title" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS Learning Center",
+      "blocks": [
+        { "type": "article", "settings": { "title": "Choosing Your First CNC: Desktop vs. Benchtop" } },
+        { "type": "article", "settings": { "title": "Diode vs. CO2 Lasers: What's Right for Your Shop" } },
+        { "type": "article", "settings": { "title": "3D Printer Buying Guide for Small Manufacturing" } },
+        { "type": "article", "settings": { "title": "Understanding Multimeter and Oscilloscope Specs" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
