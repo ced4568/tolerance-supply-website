@@ -293,7 +293,7 @@
 }
 .ts-scope .feature-icon svg { width: 22px; height: 22px; color: var(--ts-color-accent); }
 .ts-scope .feature h3 { font-size: var(--ts-text-md); }
-.ts-scope .feature p { color: var(--ts-color-ink-2); font-size: var(--ts-text-sm); line-height: 1.55; }
+.ts-scope .feature p { color: var(--ts-color-ink-2); font-size: var(--ts-text-base); line-height: 1.55; }
 .ts-scope .feature-lead { gap: var(--ts-space-md); }
 @media (min-width: 64rem) {.ts-scope .feature-lead { grid-column: span 2; }
  }

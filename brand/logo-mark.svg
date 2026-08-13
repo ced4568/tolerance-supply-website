@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-labelledby="title desc">
+  <title id="title">Tolerance Supply industrial mark</title>
+  <desc id="desc">A hexagonal industrial mark containing a precision T and datum target.</desc>
+  <path d="M20 5h32l16 31-16 31H20L4 36Z" fill="#2563EB"/>
+  <path d="M17 19h38v8H40v27h-8V27H17Z" fill="#FFFFFF"/>
+  <path d="M13 36h13M46 36h13" fill="none" stroke="#0F172A" stroke-width="3"/>
+  <circle cx="36" cy="54" r="4" fill="#F97316" stroke="#FFFFFF" stroke-width="2"/>
+</svg>
