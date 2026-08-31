@@ -1,0 +1,777 @@
+<title>Tolerance Supply — Build What's Next.</title>
+<meta name="description" content="Professional digital fabrication equipment for engineers, makers, educators, and manufacturers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ============ TOKENS ============ */
+  :root {
+    /* Neutral scale — anchored to the two brand-fixed points (Navy 900 / Off-White 50),
+       filled out as a coherent Tailwind-gray-compatible ramp so every gray in the
+       page is drawn from one considered scale rather than picked ad hoc. */
+    --navy-900: #111827;   /* brand: Midnight Navy — page ground */
+    --navy-800: #1a2436;   /* raised surface */
+    --navy-750: #202b40;   /* card surface, slightly lighter */
+    --slate-700: #374151;  /* brand: Slate Gray — borders, dividers */
+    --slate-600: #4b5768;
+    --slate-500: #6b7688;
+    --slate-400: #8f9bb0;  /* muted body text on dark */
+    --slate-300: #b6c0d1;
+    --off-white: #F9FAFB;  /* brand: Off White — primary text */
+
+    --blue-600: #2563EB;   /* brand: Electric Blue — primary action */
+    --blue-500: #4c7ff2;   /* hover state */
+    --cyan-500: #06B6D4;   /* brand: Cyan — highlight */
+    --emerald-500: #10B981;/* brand: Emerald — success / availability, small use only */
+
+    --bg: var(--navy-900);
+    --surface: var(--navy-750);
+    --surface-raised: var(--navy-800);
+    --border: rgba(148, 163, 184, 0.16);
+    --border-strong: rgba(148, 163, 184, 0.28);
+    --text: var(--off-white);
+    --text-muted: var(--slate-400);
+    --accent: var(--blue-600);
+    --highlight: var(--cyan-500);
+
+    --font-display: 'Space Grotesk', 'Sora', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+
+    --fs-h1: clamp(2.5rem, 4.4vw + 1.1rem, 4.75rem);
+    --fs-h2: clamp(1.75rem, 2vw + 1.1rem, 2.5rem);
+    --fs-h3: clamp(1.125rem, 0.6vw + 1rem, 1.375rem);
+    --fs-body-lg: clamp(1.0625rem, 0.3vw + 1rem, 1.25rem);
+    --fs-body: 1rem;
+    --fs-small: 0.875rem;
+    --fs-mono: 0.75rem;
+
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: 6rem;
+    --space-3xl: 8rem;
+
+    --container: 1240px;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  /* This page commits fully to the Midnight Navy dark theme — that is the brand
+     direction, not an oversight. No light-mode variant is offered. */
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  button { font: inherit; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--highlight);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  .container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--highlight);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 14px;
+    height: 1px;
+    background: var(--highlight);
+  }
+
+  /* ============ LOGO MARK ============
+     Geometric "V" built from three vector anchor-point nodes connected
+     by straight path segments, with a dashed control-handle off one
+     vertex — reads as a Bezier/vector path forming a V. No gear/wrench
+     iconography. */
+  .mark { flex-shrink: 0; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(17, 24, 39, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-block: 1rem;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 0.7rem; }
+  .nav-brand .mark { width: 28px; height: 28px; }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  .nav-wordmark span { color: var(--highlight); }
+  .nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--slate-300);
+  }
+  .nav-links a { transition: color 0.15s ease; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-actions { display: flex; align-items: center; gap: var(--space-sm); }
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+    font-weight: 600;
+    font-size: var(--fs-small);
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--blue-500); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--highlight); color: var(--highlight); }
+  .btn-sm { padding: 0.55rem 1.1rem; font-size: 0.8125rem; }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    padding-block: clamp(4rem, 10vw, 7rem) clamp(3.5rem, 8vw, 6rem);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 55% at 68% 20%, black 0%, transparent 72%);
+    mask-image: radial-gradient(ellipse 60% 55% at 68% 20%, black 0%, transparent 72%);
+    pointer-events: none;
+  }
+  .hero-watermark {
+    position: absolute;
+    top: -8%;
+    right: -6%;
+    width: min(46vw, 620px);
+    height: auto;
+    color: var(--accent);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 46rem;
+  }
+  .hero-inner .eyebrow { margin-bottom: var(--space-md); }
+  .hero h1 {
+    font-size: var(--fs-h1);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+  }
+  .hero-sub {
+    font-size: var(--fs-body-lg);
+    color: var(--slate-300);
+    max-width: 40rem;
+    margin-bottom: var(--space-lg);
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-xl); }
+  .hero-ctas .btn { padding: 1rem 1.75rem; font-size: 0.9375rem; }
+
+  .spec-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-md);
+  }
+  .spec-strip span {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--slate-400);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-reveal { animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .hero-reveal:nth-child(1) { animation-delay: 0s; }
+    .hero-reveal:nth-child(2) { animation-delay: 0.06s; }
+    .hero-reveal:nth-child(3) { animation-delay: 0.12s; }
+    .hero-reveal:nth-child(4) { animation-delay: 0.18s; }
+    .hero-reveal:nth-child(5) { animation-delay: 0.24s; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* ============ SECTION SHELL ============ */
+  .section { padding-block: var(--space-3xl); }
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    max-width: 42rem;
+    margin-bottom: var(--space-xl);
+  }
+  .section-head h2 { font-size: var(--fs-h2); letter-spacing: -0.01em; }
+  .section-head p { color: var(--text-muted); font-size: var(--fs-body-lg); }
+  .section-alt { background: var(--surface-raised); border-block: 1px solid var(--border); }
+
+  /* ============ CATEGORY GRID ============ */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+  }
+  .cat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .cat-card:not(.is-soon):hover {
+    border-color: rgba(6, 182, 212, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -18px rgba(6, 182, 212, 0.35);
+  }
+  .cat-visual {
+    height: 96px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(160deg, rgba(37, 99, 235, 0.14), rgba(6, 182, 212, 0.05));
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cat-card.is-soon .cat-visual {
+    background: rgba(148, 163, 184, 0.04);
+  }
+  .cat-icon { width: 56px; height: 56px; color: var(--highlight); }
+  .cat-card.is-soon .cat-icon { color: var(--slate-500); }
+  .cat-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .cat-card h3 { font-size: 1.0625rem; }
+  .cat-card p { color: var(--text-muted); font-size: var(--fs-small); line-height: 1.55; }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-live { color: var(--emerald-500); background: rgba(16, 185, 129, 0.1); }
+  .badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--emerald-500); }
+  .badge-soon { color: var(--slate-400); background: rgba(148, 163, 184, 0.08); border: 1px dashed var(--border-strong); }
+
+  /* ============ WHY GRID ============ */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1.5rem;
+  }
+  .why-card {
+    padding: var(--space-lg) var(--space-md) var(--space-md);
+    border-top: 2px solid var(--highlight);
+    background: var(--surface);
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .why-card .eyebrow { color: var(--slate-400); margin-bottom: var(--space-sm); }
+  .why-card .eyebrow::before { background: var(--slate-400); }
+  .why-card h3 { font-size: var(--fs-h3); margin-bottom: 0.75rem; }
+  .why-card p { color: var(--text-muted); font-size: 0.9375rem; line-height: 1.65; }
+
+  /* ============ USE CASES ============ */
+  .use-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .use-card {
+    background: var(--surface);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: background 0.18s ease;
+  }
+  .use-card:hover { background: var(--surface-raised); }
+  .use-card .eyebrow { font-size: 0.6875rem; }
+  .use-card h3 { font-size: 1rem; }
+  .use-card p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.55; flex: 1; }
+  .use-arrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--highlight);
+  }
+
+  /* ============ CTA BAND ============ */
+  .cta-band {
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(6, 182, 212, 0.06));
+    border-radius: var(--radius);
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+  .cta-band h2 { font-size: var(--fs-h2); max-width: 28rem; }
+  .cta-band-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ============ FOOTER ============ */
+  .footer { border-top: 1px solid var(--border); padding-block: var(--space-xl) var(--space-lg); }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(4, 1fr);
+    gap: var(--space-lg);
+    padding-bottom: var(--space-xl);
+  }
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  .footer-brand { display: flex; flex-direction: column; gap: 0.9rem; max-width: 22rem; }
+  .footer-brand .nav-brand .mark { width: 26px; height: 26px; }
+  .footer-tagline { font-size: 0.9375rem; color: var(--slate-300); }
+  .footer-tagline strong { color: var(--text); font-weight: 600; }
+  .footer-col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-400);
+    margin-bottom: var(--space-sm);
+  }
+  .footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col a { font-size: 0.875rem; color: var(--slate-300); transition: color 0.15s ease; }
+  .footer-col a:hover { color: var(--highlight); }
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-md);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    font-size: 0.8125rem;
+    color: var(--slate-500);
+    font-family: var(--font-mono);
+  }
+</style>
+
+<header class="nav">
+  <div class="container">
+    <a href="#top" class="nav-brand" aria-label="Tolerance Supply home">
+      <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <line x1="8" y1="13" x2="8" y2="27" stroke="#F9FAFB" stroke-width="2"/>
+        <line x1="32" y1="13" x2="32" y2="27" stroke="#F9FAFB" stroke-width="2"/>
+        <line x1="8" y1="20" x2="32" y2="20" stroke="#F9FAFB" stroke-width="2"/>
+        <line x1="20" y1="6" x2="20" y2="34" stroke="#06B6D4" stroke-width="1.2" stroke-dasharray="2 2"/>
+        <circle cx="8" cy="20" r="2.5" fill="#111827" stroke="#2563EB" stroke-width="1.6"/>
+        <circle cx="32" cy="20" r="2.5" fill="#111827" stroke="#2563EB" stroke-width="1.6"/>
+        <circle cx="20" cy="20" r="2" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+      </svg>
+      <span class="nav-wordmark">TOLERANCE<span>SUPPLY</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#equipment">Equipment</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#why">Why Us</a>
+      <a href="#support">Support</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost btn-sm" href="#contact">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <svg class="hero-watermark" viewBox="0 0 100 100" aria-hidden="true">
+      <path fill-rule="evenodd" d="M50,6 L88.1,28 L88.1,72 L50,94 L11.9,72 L11.9,28 Z M30,26 L50,60 L70,26 L61,26 L50,42 L39,26 Z"/>
+    </svg>
+    <div class="container hero-inner">
+      <p class="eyebrow hero-reveal">Digital Fabrication Equipment</p>
+      <h1 class="hero-reveal">Build What's Next.</h1>
+      <p class="hero-sub hero-reveal">Professional digital fabrication equipment for engineers, makers, educators, and manufacturers.</p>
+      <div class="hero-ctas hero-reveal">
+        <a href="#equipment" class="btn btn-primary">Shop Equipment</a>
+        <a href="#contact" class="btn btn-ghost">Talk With an Expert</a>
+      </div>
+      <div class="spec-strip hero-reveal">
+        <span>3D Printing</span>
+        <span>Laser Cutting</span>
+        <span>3D Scanning</span>
+        <span>Materials</span>
+        <span>Air Filtration</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY GRID ============ -->
+  <section class="section" id="equipment">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Equipment Catalog</p>
+        <h2>Shop by category</h2>
+        <p>A short, verified list of platforms across additive, subtractive, and inspection workflows — with two categories still in development.</p>
+      </div>
+
+      <div class="cat-grid">
+
+        <!-- 3D Printers -->
+        <article class="cat-card">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="14" y1="12" x2="50" y2="12"/>
+              <line x1="32" y1="12" x2="32" y2="22"/>
+              <polygon points="27,22 37,22 32,30" fill="currentColor" stroke="none"/>
+              <line x1="20" y1="38" x2="44" y2="38"/>
+              <line x1="22" y1="44" x2="42" y2="44"/>
+              <line x1="24" y1="50" x2="40" y2="50"/>
+              <line x1="14" y1="57" x2="50" y2="57" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>3D Printers</h3>
+            <span class="badge badge-live">In Stock</span>
+          </div>
+          <p>FDM, resin, and industrial platforms for prototyping through end-use parts.</p>
+        </article>
+
+        <!-- Laser Cutting & Engraving -->
+        <article class="cat-card">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="26" y="10" width="12" height="8"/>
+              <line x1="32" y1="18" x2="32" y2="42" stroke-dasharray="1 5"/>
+              <circle cx="32" cy="46" r="3"/>
+              <line x1="24" y1="46" x2="19" y2="46"/>
+              <line x1="40" y1="46" x2="45" y2="46"/>
+              <line x1="14" y1="54" x2="50" y2="54"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>Laser Cutting &amp; Engraving</h3>
+            <span class="badge badge-live">In Stock</span>
+          </div>
+          <p>CO2 and fiber systems for cutting, engraving, and marking across materials.</p>
+        </article>
+
+        <!-- 3D Scanning -->
+        <article class="cat-card">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="47" cy="14" r="4"/>
+              <line x1="44" y1="17" x2="17" y2="43" stroke-dasharray="1 4"/>
+              <line x1="47" y1="18" x2="47" y2="46" stroke-dasharray="1 4"/>
+              <circle cx="16" cy="18" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="27" cy="16" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="14" cy="28" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="26" cy="27" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="38" cy="25" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="16" cy="40" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="28" cy="39" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="40" cy="38" r="1.6" fill="currentColor" stroke="none"/>
+              <circle cx="48" cy="47" r="1.6" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>3D Scanning</h3>
+            <span class="badge badge-live">In Stock</span>
+          </div>
+          <p>Structured-light and laser scanners for reverse engineering and quality checks.</p>
+        </article>
+
+        <!-- Materials -->
+        <article class="cat-card">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="32" cy="32" r="18"/>
+              <circle cx="32" cy="32" r="7"/>
+              <line x1="32" y1="12" x2="32" y2="16"/>
+              <line x1="32" y1="48" x2="32" y2="52"/>
+              <line x1="12" y1="32" x2="16" y2="32"/>
+              <line x1="48" y1="32" x2="52" y2="32"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>Materials</h3>
+            <span class="badge badge-live">In Stock</span>
+          </div>
+          <p>Filament, resin, and stock verified to run clean on the equipment we sell.</p>
+        </article>
+
+        <!-- Air Filtration -->
+        <article class="cat-card">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+              <polygon points="24,17 31.8,21.5 31.8,30.5 24,35 16.2,30.5 16.2,21.5"/>
+              <polygon points="40,17 47.8,21.5 47.8,30.5 40,35 32.2,30.5 32.2,21.5"/>
+              <polygon points="32,31 39.8,35.5 39.8,44.5 32,49 24.2,44.5 24.2,35.5"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>Air Filtration</h3>
+            <span class="badge badge-live">In Stock</span>
+          </div>
+          <p>Fume and particulate extraction sized to your shop, not an afterthought.</p>
+        </article>
+
+        <!-- Robotics & Automation — Coming Soon -->
+        <article class="cat-card is-soon">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="18" cy="50" r="4" stroke-dasharray="2 3"/>
+              <line x1="18" y1="46" x2="34" y2="30" stroke-dasharray="2 3"/>
+              <circle cx="34" cy="30" r="3" stroke-dasharray="2 3"/>
+              <line x1="34" y1="30" x2="48" y2="38" stroke-dasharray="2 3"/>
+              <circle cx="48" cy="38" r="2.5" stroke-dasharray="2 3"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>Robotics &amp; Automation</h3>
+            <span class="badge badge-soon">Coming Soon</span>
+          </div>
+          <p>Arms and automated material handling for production-scale workflows.</p>
+        </article>
+
+        <!-- CNC & Fabrication — Coming Soon -->
+        <article class="cat-card is-soon">
+          <div class="cat-visual">
+            <svg class="cat-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="32" y1="34" x2="52" y2="34" stroke-dasharray="2 3"/>
+              <line x1="32" y1="34" x2="16" y2="46" stroke-dasharray="2 3"/>
+              <line x1="32" y1="34" x2="32" y2="12" stroke-dasharray="2 3"/>
+              <circle cx="32" cy="34" r="2" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="cat-top">
+            <h3>CNC &amp; Fabrication</h3>
+            <span class="badge badge-soon">Coming Soon</span>
+          </div>
+          <p>Mills and routers for subtractive work alongside your additive floor.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY TOLERANCE SUPPLY ============ -->
+  <section class="section section-alt" id="why">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Why Tolerance Supply</p>
+        <h2>We sell equipment the way we'd want to buy it</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <p class="eyebrow">Engineering Expertise</p>
+          <h3>Answers from people who've run the machine</h3>
+          <p>Every recommendation comes from someone who has operated the equipment, not a spec sheet lookup. Good fit if you want a straight answer on tolerances, throughput, or whether a machine can actually do what the datasheet claims.</p>
+        </div>
+        <div class="why-card">
+          <p class="eyebrow">Curated Equipment</p>
+          <h3>A short list, not a warehouse catalog</h3>
+          <p>We carry platforms we've tested ourselves, not everything with a plug and a price tag. Good fit if you'd rather choose between five solid options than scroll through fifty you can't compare.</p>
+        </div>
+        <div class="why-card">
+          <p class="eyebrow">Long-Term Support</p>
+          <h3>Support after the invoice clears</h3>
+          <p>Machines need calibration, parts, and troubleshooting for years, not just a warranty period. Good fit if you're buying equipment you plan to still be running in year five.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASES ============ -->
+  <section class="section" id="use-cases">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Build For Your Use Case</p>
+        <h2>Equipment packages, scoped to the job</h2>
+      </div>
+      <div class="use-grid">
+        <a class="use-card" href="#contact">
+          <p class="eyebrow">Community</p>
+          <h3>Launch a Makerspace</h3>
+          <p>Equipment packages sized for community labs, from a first printer to a full floor plan.</p>
+          <span class="use-arrow">Explore packages →</span>
+        </a>
+        <a class="use-card" href="#contact">
+          <p class="eyebrow">Institutional</p>
+          <h3>Education Labs</h3>
+          <p>Curriculum-ready hardware with the durability and support a classroom actually needs.</p>
+          <span class="use-arrow">Explore packages →</span>
+        </a>
+        <a class="use-card" href="#contact">
+          <p class="eyebrow">Design Teams</p>
+          <h3>Rapid Prototyping</h3>
+          <p>Fast-turnaround platforms for teams iterating on physical parts multiple times a week.</p>
+          <span class="use-arrow">Explore packages →</span>
+        </a>
+        <a class="use-card" href="#contact">
+          <p class="eyebrow">Manufacturing</p>
+          <h3>Small Production</h3>
+          <p>Equipment that holds tolerance and uptime across real production runs, not just demos.</p>
+          <span class="use-arrow">Explore packages →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="cta-band" id="contact">
+        <h2>Not sure which platform fits your shop?</h2>
+        <div class="cta-band-actions">
+          <a href="#" class="btn btn-primary">Shop Equipment</a>
+          <a href="#" class="btn btn-ghost">Talk With an Expert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="support">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="nav-brand" aria-label="Tolerance Supply home">
+          <svg class="mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <line x1="8" y1="13" x2="8" y2="27" stroke="#F9FAFB" stroke-width="2"/>
+            <line x1="32" y1="13" x2="32" y2="27" stroke="#F9FAFB" stroke-width="2"/>
+            <line x1="8" y1="20" x2="32" y2="20" stroke="#F9FAFB" stroke-width="2"/>
+            <line x1="20" y1="6" x2="20" y2="34" stroke="#06B6D4" stroke-width="1.2" stroke-dasharray="2 2"/>
+            <circle cx="8" cy="20" r="2.5" fill="#111827" stroke="#2563EB" stroke-width="1.6"/>
+            <circle cx="32" cy="20" r="2.5" fill="#111827" stroke="#2563EB" stroke-width="1.6"/>
+            <circle cx="20" cy="20" r="2" fill="#111827" stroke="#06B6D4" stroke-width="1.2"/>
+          </svg>
+          <span class="nav-wordmark">TOLERANCE<span>SUPPLY</span></span>
+        </a>
+        <p class="footer-tagline"><strong>The Engineer's Equipment Partner.</strong><br>Professional digital fabrication equipment for engineers, makers, educators, and manufacturers.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#equipment">3D Printers</a></li>
+          <li><a href="#equipment">Laser Cutting</a></li>
+          <li><a href="#equipment">3D Scanning</a></li>
+          <li><a href="#equipment">Materials</a></li>
+          <li><a href="#equipment">Air Filtration</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Financing</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tolerance Supply. All rights reserved.</span>
+      <span>Homepage mockup — for internal review</span>
+    </div>
+  </div>
+</footer>

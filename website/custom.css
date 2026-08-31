@@ -1,0 +1,208 @@
+/* *****************************************************
+
+    ** Custom Stylesheet **
+
+    Any custom styling you want to apply should be
+    defined here.
+
+***************************************************** */
+
+/* Custom CSS for Nexus Cart
+ *
+ * This block allows you to customize theme colors and styles for the entire Nexus Cart template.
+ *
+ * To customize colors:
+ * - Replace the var() references with your own hex colors or other CSS values.
+ * - For example, instead of --primary: #4b5563; use --primary: #your-color;
+ * - You can also override any CSS properties here.
+ */
+
+html {
+    font-size: 14px;
+}
+
+:root {
+    --white: #fff;
+
+    /* Neutral shades, kept as-is for base scale */
+    --neutral-50: #fbf9fa;
+    --neutral-100: #f4f5f7;
+    --neutral-200: #e4e4e7;
+    --neutral-300: #d0d5dd;
+    --neutral-400: #9ca3af;
+    --neutral-500: #6b7280;
+    --neutral-600: #4b5563;
+    --neutral-700: #374151;
+    --neutral-800: #1f2937;
+    --neutral-900: #111827;
+    --neutral-950: #030712;
+
+    /* Synthos brand shades: dark paper background */
+    --paper-50: #eceef2;
+    --paper-100: #dde0e6;
+    --paper-200: #b7bcc7;
+    --paper-300: #8d94a3;
+    --paper-400: #5c6272;
+    --paper-500: #363b47;
+    --paper-600: #262a34;
+    --paper-700: #1e222b;
+    --paper-800: #191c23;
+    --paper-900: #14161c;
+    --paper-950: #0e1015;
+
+    /* Synthos brand shades: accent blue */
+    --primary-50: #eaf0fe;
+    --primary-100: #d3e0fd;
+    --primary-200: #a7c1fb;
+    --primary-300: #7ba3f9;
+    --primary-400: #5f8ff5;
+    --primary-500: #4c7ef0;
+    --primary-600: #3d68d6;
+    --primary-700: #3153ab;
+    --primary-800: #263f82;
+    --primary-900: #1c2e60;
+    --primary-950: #121d3e;
+
+    /* Primary colors: accent blue, not neutral gray */
+    --primary: var(--primary-500);
+    --primary-lifted: var(--primary-600);
+    --primary-accented: var(--primary-700);
+
+    /* Secondary colors */
+    --secondary: var(--paper-400);
+    --secondary-lifted: var(--paper-500);
+    --secondary-accented: var(--paper-600);
+
+    /* Success colors */
+    --success: #00a63e;
+    --success-lifted: #008236;
+    --success-accented: #016630;
+
+    /* Info colors */
+    --info: #155dfc;
+    --info-lifted: #1447e6;
+    --info-accented: #193cb8;
+
+    /* Notice colors */
+    --notice: #7f22fe;
+    --notice-lifted: #7008e7;
+    --notice-accented: #5d0ec0;
+
+    /* Warning colors */
+    --warning: #f54a00;
+    --warning-lifted: #ca3500;
+    --warning-accented: #9f2d00;
+
+    /* Error colors */
+    --error: #e7000b;
+    --error-lifted: #c10007;
+    --error-accented: #9f0712;
+
+    /* Grayscale colors */
+    --grayscale: var(--paper-900);
+    --grayscale-lifted: var(--paper-800);
+    --grayscale-accented: var(--paper-700);
+
+    /* Neutral colors */
+    --neutral: var(--paper-400);
+    --neutral-lifted: var(--paper-500);
+    --neutral-accented: var(--paper-600);
+
+    /* Text colors: light-on-dark instead of dark-on-light */
+    --text-inverted: var(--paper-950);
+    --text-muted: var(--paper-300);
+    --text-lifted: var(--paper-200);
+    --text-accented: var(--paper-100);
+    --text: var(--white);
+
+    /* Border colors: visible against a dark background */
+    --border-muted: var(--paper-600);
+    --border: var(--paper-500);
+    --border-lifted: var(--paper-400);
+    --border-accented: var(--primary-500);
+
+    /* Background colors: dark paper instead of white */
+    --bg: var(--paper-900);
+    --bg-muted: var(--paper-800);
+    --bg-lifted: var(--paper-700);
+    --bg-accented: var(--paper-600);
+    --bg-inverted: var(--white);
+
+    /* Additional colors, unchanged */
+    --yellow-200: #fff085;
+    --yellow-300: #ffdf20;
+    --teal-300: #46edd5;
+    --teal-400: #00d5be;
+    --emerald-300: #5ee9b5;
+    --pink-400: #fb64b6;
+
+    /* Additional custom properties */
+    /* Font sizes */
+    --text-xs: 0.625rem;
+    --text-sm: 0.75rem;
+    --text-md: 0.875rem;
+    --text-lg: 1rem;
+
+    /* Spacing */
+    --outline-sm: 1px;
+    --outline-md: 2px;
+    --outline-lg: 3px;
+
+    /* Rounding */
+    --rounding-sm: 0.25rem;
+    --rounding-md: 0.5rem;
+    --rounding-lg: 0.75rem;
+
+    /* Other */
+    --letter-spacing: 0em;
+    --disabled-opacity: 25%;
+}
+
+/* Match brand typography */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Rebrand Bootstrap's stock .text-warning/.btn-warning (used by the legacy
+   cart promo boxes, e.g. "Add Web Hosting" on the domain search page) to
+   the theme's own --warning variable instead of Bootstrap's default
+   yellow (#ffc107). These classes live in theme.min.css, not the Nexus
+   variable system above, which is why editing --primary/--paper never
+   touched them. */
+.text-warning {
+    color: var(--warning) !important;
+}
+.text-warning:hover,
+.text-warning:focus {
+    color: var(--warning-lifted) !important;
+}
+.btn-warning {
+    color: var(--white);
+    background-color: var(--warning);
+    border-color: var(--warning);
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning.focus {
+    color: var(--white);
+    background-color: var(--warning-lifted);
+    border-color: var(--warning-lifted);
+    box-shadow: none;
+}
+
+/* Rebrand the domain-search hero panel on the "Register a Domain" page.
+   This is a hardcoded yellow gradient (#ffb201 -> #ffd960) defined in
+   templates/orderforms/standard_cart/css/all.min.css, completely unrelated
+   to the Nexus variable system or the .text-warning/.btn-warning fix
+   above -- a different legacy stylesheet, loaded after this file, styling
+   a different element. Using the compound class below (higher specificity
+   than the original's single-class rule) wins regardless of load order. */
+.domain-checker-container.domain-checker-advanced {
+    background: linear-gradient(180deg, var(--primary-400), var(--primary-600));
+}
